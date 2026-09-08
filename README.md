@@ -31,3 +31,18 @@ function onChange(control, oldValue, newValue, isLoading, isTemplate) {
         }
     }
 }
+
+
+
+# SetScratchpadValues
+
+(function executeRule(current, previous /*null when async*/) {
+
+    g_scratchpad.city = current.requested_for.city;
+    g_scratchpad.country = current.requested_for.country;
+
+    // Hooray for dotwalking!
+    // By writing these values to the scratchpad, a client script can easily fetch them.
+
+})(current, previous);
+
