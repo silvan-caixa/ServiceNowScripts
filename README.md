@@ -46,3 +46,33 @@ function onChange(control, oldValue, newValue, isLoading, isTemplate) {
 
 })(current, previous);
 
+# SetLoanerLocation
+function onLoad() {
+
+    // This uses the dotwalking superpowers of the Scratchpad to use the requestor's city & state as the default location to be used.
+    // Make sure whoever you use for testing has values in their user record for this!
+
+    if (g_form.getValue('location_to_be_used') != '') {
+        return;
+    }
+
+    var city = g_scratchpad.city;
+    var country = g_scratchpad.country;
+
+    if (city && country) {
+        g_form.setValue('location_to_be_used', city + ', ' + country);
+    } else if (city) {
+        g_form.setValue('location_to_be_used', city);
+    } else if (country) {
+        g_form.setValue('location_to_be_used', country);
+    }
+
+    if (city || country) {
+        g_form.showFieldMsg(
+            'location_to_be_used',
+            'Value set automatically - you may override by editing',
+            'info'
+        );
+    }
+}
+
