@@ -1,0 +1,15 @@
+/**
+ * @param {params} params
+ * @param {api} params.api
+ * @param {TransformApiHelpers} params.helpers
+ */
+function evaluateProperty({api, helpers}) {
+    const results = api.data.look_up_multiple_records_2.results || [];
+
+    return results.map(function(record) {
+        return {
+            "id": record._row_data.uniqueValue,
+            "label": record.nome.displayValue || record.nome.value
+        };
+    });
+}
