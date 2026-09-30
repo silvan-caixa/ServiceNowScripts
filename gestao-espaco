@@ -1,3 +1,22 @@
+/**7 
+function evaluateProperty({api, helpers}) {
+
+    const results = api.data.look_up_multiple_records_3.results || [];
+
+    const predioSelecionado = api.state.select_building;
+
+    return results
+        .filter(function(record) {
+            return record.predio &&
+                   record.predio.value === predioSelecionado;
+        })
+        .map(function(record) {
+            return {
+                id: record._row_data.uniqueValue,
+                label: record.nome.displayValue || record.nome.value
+            };
+        });
+}
 
 /**6
 function handler({api, event, helpers, imports}) {
