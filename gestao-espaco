@@ -1,3 +1,14 @@
+
+/**6
+function handler({api, event, helpers, imports}) {
+    const value = event.payload.value;
+
+    api.setState(
+        'select_building',
+        Array.isArray(value) ? value[0] : value
+    );
+}
+
 /**5
 function evaluateProperty({api, helpers}) {
 
