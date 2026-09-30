@@ -1,3 +1,23 @@
+/**4
+function evaluateProperty({api, helpers}) {
+
+    const results = api.data.look_up_multiple_records_2.results || [];
+
+    const unidadeSelecionada = api.state.select_unit;
+
+    return results
+        .filter(function(record) {
+            return record.unidade &&
+                   record.unidade.value === unidadeSelecionada;
+        })
+        .map(function(record) {
+            return {
+                id: record._row_data.uniqueValue,
+                label: record.nome.displayValue || record.nome.value
+            };
+        });
+}
+
 /**3
 function evaluateProperty({api, helpers}) {
     const results = api.data.look_up_multiple_records_2.results || [];
