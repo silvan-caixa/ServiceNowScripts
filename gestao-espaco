@@ -1,4 +1,17 @@
-/**
+
+/**2
+function handler({api, event, helpers, imports}) {
+    const value = event.payload.value;
+
+    api.setState(
+        'select_unit',
+        Array.isArray(value) ? value[0] : value
+    );
+}
+
+
+
+/**1
  * @param {params} params
  * @param {api} params.api
  * @param {TransformApiHelpers} params.helpers
