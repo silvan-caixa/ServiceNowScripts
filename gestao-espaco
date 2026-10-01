@@ -1,3 +1,19 @@
+/**9
+function handler({api, event, helpers, imports}) {
+
+    const value = event.payload.value;
+    const andar = Array.isArray(value) ? value[0] : value;
+
+    console.log('VALOR DO ANDAR:', andar);
+    console.log('EVENTO COMPLETO:', event);
+
+    api.setState('select_floor', andar);
+
+    api.setState(
+        'room_filter',
+        'andar=' + andar
+    );
+}
 
 /**8
 
