@@ -1,4 +1,4 @@
-/**
+/**13
 function handler({api, event, helpers, imports}) {
 
     const participantes = event.payload.value || '';
