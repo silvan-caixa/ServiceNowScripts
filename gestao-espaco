@@ -1,3 +1,16 @@
+/** 11
+function evaluateProperty({api, helpers}) {
+
+    const results = api.data.look_up_multiple_records_2.results || [];
+
+    return results.map(function(record) {
+        return {
+            id: record._row_data.uniqueValue,
+            label: record.nome.displayValue || record.nome.value
+        };
+    });
+}
+
 /** 10
 function handler({api, event, helpers, imports}) {
 
