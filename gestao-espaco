@@ -1,3 +1,36 @@
+/**
+function handler({api, event, helpers, imports}) {
+
+    const participantes = event.payload.value || '';
+
+    console.log('===== PARTICIPANTES =====');
+    console.log('Participantes:', participantes);
+
+    api.setState('participants_count', participantes);
+
+    const filters = [];
+
+    if (api.state.select_building) {
+        filters.push('predio=' + api.state.select_building);
+    }
+
+    if (api.state.select_floor) {
+        filters.push('andar=' + api.state.select_floor);
+    }
+
+    filters.push('ativo_para_reserva=true');
+
+    if (participantes && !isNaN(Number(participantes))) {
+        filters.push('capacidade>=' + Number(participantes));
+    }
+
+    const roomFilter = filters.join('^');
+
+    console.log('ROOM FILTER:', roomFilter);
+
+    api.setState('room_filter', roomFilter);
+}
+
 /**12
 function handler({api, event, helpers, imports}) {
 
