@@ -1,3 +1,21 @@
+/**14
+function handler({api, event, helpers, imports}) {
+
+    const data = event.payload.value;
+
+    console.log('===== DATA =====');
+    console.log('DATA SELECIONADA:', data);
+
+    api.setState('selected_date', data);
+
+    if (data) {
+        api.data.look_up_multiple_records_reservas.refresh();
+
+        console.log('Consulta de reservas atualizada pela DATA.');
+    }
+}
+
+
 /**13
 function handler({api, event, helpers, imports}) {
 
