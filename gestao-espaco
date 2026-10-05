@@ -1,3 +1,33 @@
+/**12
+function handler({api, event, helpers, imports}) {
+
+    const value = event.payload.value;
+    const andar = Array.isArray(value) ? value[0] : value;
+
+    api.setState('select_floor', andar);
+
+    let filters = [];
+
+    if (api.state.select_building) {
+        filters.push('predio=' + api.state.select_building);
+    }
+
+    if (andar) {
+        filters.push('andar=' + andar);
+    }
+
+    filters.push('ativo_para_reserva=true');
+
+    const roomFilter = filters.join('^');
+
+    console.log('========== SET SELECTED FLOOR ==========');
+    console.log('Prédio:', api.state.select_building);
+    console.log('Andar selecionado:', andar);
+    console.log('ROOM FILTER:', roomFilter);
+
+    api.setState('room_filter', roomFilter);
+}
+
 /** 11
 function evaluateProperty({api, helpers}) {
 
