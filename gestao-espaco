@@ -1,3 +1,20 @@
+/**15
+function handler({api, event, helpers, imports}) {
+
+    const horario = event.payload.value;
+
+    console.log('===== HORÁRIO =====');
+    console.log('HORÁRIO SELECIONADO:', horario);
+
+    api.setState('selected_time', horario);
+
+    if (horario) {
+        api.data.look_up_multiple_records_reservas.refresh();
+
+        console.log('Consulta de reservas atualizada pelo HORÁRIO.');
+    }
+}
+
 /**14
 function handler({api, event, helpers, imports}) {
 
