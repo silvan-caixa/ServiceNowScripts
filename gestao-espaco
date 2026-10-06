@@ -1,3 +1,75 @@
+
+/**16
+function handler({api, event, helpers, imports}) {
+
+    console.log('===== VERIFICANDO DISPONIBILIDADE =====');
+
+    const reservas =
+        api.data.look_up_multiple_records_reservas.results || [];
+
+    const dataSelecionada = api.state.selected_date;
+    const horarioSelecionado = api.state.selected_time;
+
+    console.log('Data selecionada:', dataSelecionada);
+    console.log('Horário selecionado:', horarioSelecionado);
+    console.log('Quantidade de reservas:', reservas.length);
+
+    const salasOcupadas = [];
+
+    reservas.forEach(function(reserva, index) {
+
+        const sala =
+            reserva.sala && reserva.sala.value
+                ? reserva.sala.value
+                : reserva.sala;
+
+        const data =
+            reserva.data && reserva.data.value
+                ? reserva.data.value
+                : reserva.data;
+
+        const horaInicial =
+            reserva.hora_inicial && reserva.hora_inicial.value
+                ? reserva.hora_inicial.value
+                : reserva.hora_inicial;
+
+        const horaFinal =
+            reserva.hora_final && reserva.hora_final.value
+                ? reserva.hora_final.value
+                : reserva.hora_final;
+
+        console.log(
+            'Reserva ' + index,
+            '| Sala:', sala,
+            '| Data:', data,
+            '| Início:', horaInicial,
+            '| Fim:', horaFinal
+        );
+
+        if (
+            sala &&
+            data &&
+            horaInicial &&
+            horaFinal &&
+            data === dataSelecionada &&
+            horaInicial <= horarioSelecionado &&
+            horaFinal > horarioSelecionado
+        ) {
+            salasOcupadas.push(sala);
+
+            console.log(
+                '🔴 SALA OCUPADA:',
+                sala
+            );
+        }
+    });
+
+    console.log(
+        '===== SALAS OCUPADAS =====',
+        salasOcupadas
+    );
+}
+
 /**15
 function handler({api, event, helpers, imports}) {
 
